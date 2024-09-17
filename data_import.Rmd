@@ -10,7 +10,7 @@ library(tidyverse)
 This document will show how to import data. 
 
 ## Import the FAS Litters CSV
-###Notes about paths: We should use relative paths instead of absolute paths because this makes a project more easily reproducible from any computer, not just the original machine. Notice that I haven't installed the entire janitor package, but I want to be able to use the clean_names function. I can use this style code to pull just this 
+###Notes about paths: We should use relative paths instead of absolute paths because this makes a project more easily reproducible from any computer, not just the original machine. I am using relative paths in this document. Notice that I haven't installed the entire janitor package, but I want to be able to use the clean_names function. I can use this style code to pull just this specific command. 
 
 ```{r}
 litters_df = read_csv("data/FAS_litters.csv")
@@ -28,5 +28,34 @@ tail(litters_df)
 
 ```{r eval = FALSE}
 view(litters_df)
+```
+
+##Learning assessment
+
+Use relative paths
+```{r, eval = FALSE}
+pups_df = read_csv("data/FAS_pups.csv")
+
+pups_df = janitor::clean_names(pups_df)
+```
+
+##Look at read_csv options
+Skip can be used to skip first few rows, in case people have added unnecessary information there
+```{r}
+litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    skip = 1 
+  )
+```
+
+What about missing data? Here is a quick way to make missing values uniform in your dataset. 
+
+```{r}
+litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    na = c("NA", "", ".")
+  )
 ```
 
