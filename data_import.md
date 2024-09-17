@@ -85,21 +85,67 @@ tail(litters_df)
 view(litters_df)
 ```
 
-\##Learning assessment Use relative paths
+\##Learning assessment
+
+Use relative paths
 
 ``` r
 pups_df = read_csv("data/FAS_pups.csv")
+
+pups_df = janitor::clean_names(pups_df)
 ```
 
-    ## Rows: 313 Columns: 6
+\##Look at read_csv options Skip can be used to skip first few rows, in
+case people have added unnecessary information there
+
+``` r
+litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    skip = 1 
+  )
+```
+
+    ## New names:
+    ## Rows: 48 Columns: 8
+    ## ── Column specification
+    ## ──────────────────────────────────────────────────────── Delimiter: "," chr
+    ## (4): Con7, #85, 19.7, 34.7 dbl (4): 20, 3...6, 4, 3...8
+    ## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+    ## Specify the column types or set `show_col_types = FALSE` to quiet this message.
+    ## • `3` -> `3...6`
+    ## • `3` -> `3...8`
+
+What about missing data? Here is a quick way to make missing values
+uniform in your dataset.
+
+``` r
+litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    na = c("NA", "", ".")
+  )
+```
+
+    ## Rows: 49 Columns: 8
     ## ── Column specification ────────────────────────────────────────────────────────
     ## Delimiter: ","
-    ## chr (2): Litter Number, PD ears
-    ## dbl (4): Sex, PD eyes, PD pivot, PD walk
+    ## chr (2): Group, Litter Number
+    ## dbl (6): GD0 weight, GD18 weight, GD of Birth, Pups born alive, Pups dead @ ...
     ## 
     ## ℹ Use `spec()` to retrieve the full column specification for this data.
     ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
+What if we code ‘group’ as a factor variable?
+
 ``` r
-pups_df = janitor::clean_names(pups_df)
+litters_df = 
+  litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    na = c("NA", "", "."), 
+    col_types = cols(
+      Group = col_factor()
+    )
+)
 ```

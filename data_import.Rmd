@@ -59,3 +59,17 @@ litters_df=
   )
 ```
 
+What if we code 'group' as a factor variable?
+
+```{r}
+litters_df = 
+  litters_df=
+  read_csv(
+    file = "data/FAS_litters.csv",
+    na = c("NA", "", "."), 
+    col_types = cols(
+      Group = col_factor()
+    )
+)
+```
+
