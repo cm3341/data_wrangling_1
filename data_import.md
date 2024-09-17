@@ -149,3 +149,45 @@ litters_df =
     )
 )
 ```
+
+## Import an excel file
+
+Import MLB 2011 summary data. Sheet and range (not included below) are
+functions specific to read_excel. Range is helpful because you can pull
+just a portion of the dataset.
+
+``` r
+mlb_df = read_excel("data/mlb11.xlsx", sheet = "mlb11")
+```
+
+## Import SAS data
+
+``` r
+pulse_df = read_sas("data/public_pulse_data.sas7bdat")
+```
+
+## Never use read.csv(). This will give you a dataframe rather than a tibble, which is what you get with read_csv. The latter is also more memory efficient, and that will become evident down the line.
+
+``` r
+litters_df = read.csv("data/FAS_litters.csv")
+```
+
+Never do this either:
+
+``` r
+litters_df$L
+```
+
+    ##  [1] "#85"             "#1/2/95/2"       "#5/5/3/83/3-3"   "#5/4/2/95/2"    
+    ##  [5] "#4/2/95/3-3"     "#2/2/95/3-2"     "#1/5/3/83/3-3/2" "#3/83/3-3"      
+    ##  [9] "#2/95/3"         "#3/5/2/2/95"     "#5/4/3/83/3"     "#1/6/2/2/95-2"  
+    ## [13] "#3/5/3/83/3-3-2" "#2/2/95/2"       "#3/6/2/2/95-3"   "#59"            
+    ## [17] "#103"            "#1/82/3-2"       "#3/83/3-2"       "#2/95/2-2"      
+    ## [21] "#3/82/3-2"       "#4/2/95/2"       "#5/3/83/5-2"     "#8/110/3-2"     
+    ## [25] "#106"            "#94/2"           "#62"             "#84/2"          
+    ## [29] "#107"            "#85/2"           "#98"             "#102"           
+    ## [33] "#101"            "#111"            "#112"            "#97"            
+    ## [37] "#5/93"           "#5/93/2"         "#7/82-3-2"       "#7/110/3-2"     
+    ## [41] "#2/95/2"         "#82/4"           "#53"             "#79"            
+    ## [45] "#100"            "#4/84"           "#108"            "#99"            
+    ## [49] "#110"
