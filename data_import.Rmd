@@ -10,10 +10,12 @@ library(tidyverse)
 This document will show how to import data. 
 
 ## Import the FAS Litters CSV
-###Notes about paths: We should use relative paths instead of absolute paths because this makes a project more easily reproducible from any computer, not just the original machine. 
+###Notes about paths: We should use relative paths instead of absolute paths because this makes a project more easily reproducible from any computer, not just the original machine. Notice that I haven't installed the entire janitor package, but I want to be able to use the clean_names function. I can use this style code to pull just this 
 
 ```{r}
 litters_df = read_csv("data/FAS_litters.csv")
+
+litters_df = janitor::clean_names(litters_df)
 ```
 
 ## Look at the dataset
